@@ -18,6 +18,7 @@ import PostListPage from "./pages/board/PostListPage";
 import PostWritePage from "./pages/board/PostWritePage";
 import PostDetailPage from "./pages/board/PostDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import FileUploadPage from "./pages/FileUploadPage"; // 추가
 
 function App() {
   return (
@@ -37,9 +38,8 @@ function App() {
               <Route path="/posts" element={<PostListPage />} />
               <Route path="/write" element={<PostWritePage />} />
               <Route path="/posts/:id" element={<PostDetailPage />} />
-
-              {/* 404 Not Found - 정의되지 않은 모든 경로 */}
               <Route path="*" element={<NotFoundPage />} />
+              <Route path="/upload" element={<FileUploadPage />} /> {/* 추가 */}
             </Routes>
           </Container>
         </div>

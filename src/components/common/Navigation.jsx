@@ -4,14 +4,14 @@ import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 
-const Navigation  = () => {
+const Navigation = () => {
   const navigate = useNavigate();
-  const { user, logout } = useContext(AuthContext);  // user와 logout만 필요
+  const { user, logout } = useContext(AuthContext); // user와 logout만 필요
 
   // 로그아웃 처리
   const handleLogout = () => {
-    logout();  // Context의 logout 함수 호출
-    navigate("/");  // 홈으로 이동
+    logout(); // Context의 logout 함수 호출
+    navigate("/"); // 홈으로 이동
   };
 
   return (
@@ -19,7 +19,7 @@ const Navigation  = () => {
       <Container>
         {/* 로고/홈 링크 */}
         <Navbar.Brand as={Link} to="/">
-          Spring Boot Security +  React
+          Spring Boot Security + React
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -36,9 +36,15 @@ const Navigation  = () => {
 
             {/* user 객체가 있으면(로그인 상태) 글쓰기 메뉴 표시 */}
             {user && (
-              <Nav.Link as={Link} to="/write">
-                글쓰기
-              </Nav.Link>
+              <>
+                <Nav.Link as={Link} to="/write">
+                  글쓰기
+                </Nav.Link>
+                 {/* 파일 업로드 추가 */}
+                <Nav.Link as={Link} to="/upload">
+                  파일 업로드
+                </Nav.Link>{" "}               
+              </>
             )}
           </Nav>
 
@@ -54,8 +60,8 @@ const Navigation  = () => {
                   로그아웃
                 </Button>
               </>
-              // 하나의 묶음으로 만들어 삼항 연산자의 결과로 반환하기 위해 Fragment 를 이용 
             ) : (
+              // 하나의 묶음으로 만들어 삼항 연산자의 결과로 반환하기 위해 Fragment 를 이용
               // 비로그인 상태 - user가 null일 때
               <>
                 <Nav.Link as={Link} to="/login">
@@ -71,6 +77,6 @@ const Navigation  = () => {
       </Container>
     </Navbar>
   );
-}
+};
 
 export default Navigation;
